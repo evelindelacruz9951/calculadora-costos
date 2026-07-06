@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Costos Artesanales</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Calculadora de Costos</h1>
+        <p class="subtitle">Gestiona los materiales, mano de obra y márgenes de tus proyectos</p>
+    </header>
+
+    <main class="container">
+        <!-- SECCIÓN IZQUIERDA: TABLAS DE ENTRADA DE DATOS -->
+        <section class="left-panel">
+            
+            <!-- 1. Costos del Estambre -->
+            <div class="card">
+                <h2>Costos del Estambre</h2>
+                <div class="table-responsive">
+                    <table id="tabla-estambre">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%;">#</th>
+                                <th>Color</th>
+                                <th>Peso Madeja (gr)</th>
+                                <th>Peso Final (gr)</th>
+                                <th>Costo Madeja ($)</th>
+                                <th>Costo Real</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td><input type="text" placeholder="Ej. Verde Olivo"></td>
+                                <td><input type="number" class="calc-trigger" id="e1-peso-total" value="100"></td>
+                                <td><input type="number" class="calc-trigger" id="e1-peso-final" value="80"></td>
+                                <td><input type="number" class="calc-trigger" id="e1-costo" value="50"></td>
+                                <td class="moneda" id="e1-real">$0.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 2. Costos de Paquetes e Insumos -->
+            <div class="card">
+                <h2>Costos de Paquetes e Insumos</h2>
+                <div class="table-responsive">
+                    <table id="tabla-insumos">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%;">#</th>
+                                <th>Descripción</th>
+                                <th>Costo Paquete ($)</th>
+                                <th>Unidades por Paquete</th>
+                                <th>Costo Unitario Usado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td><input type="text" placeholder="Ej. Ojos de seguridad"></td>
+                                <td><input type="number" class="calc-trigger" id="i1-costo" value="30"></td>
+                                <td><input type="number" class="calc-trigger" id="i1-unidades" value="10"></td>
+                                <td class="moneda" id="i1-real">$0.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 3. Costos Otros Materiales -->
+            <div class="card">
+                <h2>Costos Otros Materiales</h2>
+                <div class="table-responsive">
+                    <table id="tabla-otros">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%;">#</th>
+                                <th>Descripción</th>
+                                <th>Costo Paquete ($)</th>
+                                <th>Unidades por Paquete</th>
+                                <th>Costo Unitario Usado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td><input type="text" placeholder="Ej. Tarjeta de agradecimiento"></td>
+                                <td><input type="number" class="calc-trigger" id="m1-costo" value="100"></td>
+                                <td><input type="number" class="calc-trigger" id="m1-unidades" value="50"></td>
+                                <td class="moneda" id="m1-real">$0.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 4. Mano de Obra -->
+            <div class="card">
+                <h2>Mano de Obra</h2>
+                <div class="table-responsive">
+                    <table id="tabla-mano-obra">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%;">#</th>
+                                <th>Descripción</th>
+                                <th>Horas</th>
+                                <th>Minutos</th>
+                                <th>Salario por Hora ($)</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td><input type="text" placeholder="Ej. Tiempo de tejido"></td>
+                                <td><input type="number" class="calc-trigger" id="mo1-horas" value="3"></td>
+                                <td><input type="number" class="calc-trigger" id="mo1-minutos" value="30"></td>
+                                <td><input type="number" class="calc-trigger" id="mo1-salario" value="40"></td>
+                                <td class="moneda" id="mo1-total">$0.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- SECCIÓN DERECHA: PANELES DE RESULTADOS Y GANANCIAS -->
+        <section class="right-panel">
+            
+            <!-- Resumen de Costos -->
+            <div class="card summary-card">
+                <h3>Costos Totales</h3>
+                <div class="summary-row">
+                    <span>Materiales:</span>
+                    <span id="resumen-material">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Bruto (Materiales + Mano de Obra):</span>
+                    <span id="resumen-bruto">$0.00</span>
+                </div>
+                <div class="summary-row highlight">
+                    <span>Costo Total Real:</span>
+                    <span id="resumen-real">$0.00</span>
+                </div>
+            </div>
+
+            <!-- Ajustes Adicionales -->
+            <div class="card summary-card">
+                <h3>Ajustes Adicionales</h3>
+                <div class="input-group">
+                    <label for="ajuste-relleno">Por Rellenar (%)</label>
+                    <input type="number" id="ajuste-relleno" value="10">
+                </div>
+                <div class="input-group">
+                    <label for="ajuste-impuesto">Impuesto (%)</label>
+                    <input type="number" id="ajuste-impuesto" value="16">
+                </div>
+                <div class="input-group">
+                    <label for="ajuste-descuento">Descuento ($)</label>
+                    <input type="number" id="ajuste-descuento" value="0">
+                </div>
+                <div class="summary-row total-row">
+                    <span>Suma Final Costos:</span>
+                    <span id="resumen-suma-final">$0.00</span>
+                </div>
+            </div>
+
+            <!-- Precio de Venta -->
+            <div class="card sale-card">
+                <h3>Precio de Venta</h3>
+                <div class="price-input">
+                    <span>$</span>
+                    <input type="number" id="precio-venta" value="500" placeholder="0.00">
+                </div>
+            </div>
+
+            <!-- Panel de Ganancias -->
+            <div class="card profit-card">
+                <h3>Análisis de Ganancia</h3>
+                <div class="summary-row">
+                    <span>Ganancia Bruta:</span>
+                    <span id="ganancia-bruta" class="profit-positive">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Comprobación:</span>
+                    <span id="ganancia-comprobacion">$0.00</span>
+                </div>
+                <div class="summary-row highlight-net">
+                    <span>Ganancia Neta:</span>
+                    <span id="ganancia-neta">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Margen de Utilidad:</span>
+                    <span id="margen-utilidad">0%</span>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 - Herramienta de Costos para Proyectos Creativos</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
