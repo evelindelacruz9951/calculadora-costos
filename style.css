@@ -1,0 +1,233 @@
+/* Paleta de colores inspirada en tonos naturales y Sage Green */
+:root {
+    --primary-color: #4A6B5D;       /* Verde Salvia Oscuro para encabezados principales */
+    --secondary-color: #8AA399;     /* Verde Salvia Claro para títulos de tablas */
+    --bg-color: #F4F7F5;            /* Fondo gris/verde muy suave para toda la página */
+    --card-bg: #FFFFFF;             /* Blanco puro para los bloques de contenido */
+    --text-color: #2C3E50;          /* Gris oscuro elegante para los textos */
+    --accent-total: #D1DCD6;        /* Tono de resalte para los totales */
+    --accent-net: #E6F4EA;          /* Fondo verde éxito para la ganancia neta */
+    --text-net: #137333;            /* Texto verde para la ganancia neta */
+}
+
+/* Configuración general y reseteo */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    padding: 30px 20px;
+}
+
+/* Encabezado del sitio */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    color: var(--primary-color);
+    font-size: 2.4rem;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.subtitle {
+    color: #7F8C8D;
+    font-size: 1.1rem;
+}
+
+/* Distribución de la pantalla en 2 columnas (Tablas a la izquierda, Resultados a la derecha) */
+.container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+    max-width: 1350px;
+    margin: 0 auto;
+}
+
+/* Si se abre en un celular o pantalla pequeña, se acomoda en 1 sola columna automática */
+@media (max-width: 1024px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Tarjetas contenedoras de cada sección */
+.card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    border: 1px solid #E2E8F0;
+}
+
+/* Título de las secciones de la izquierda */
+.card h2 {
+    color: white;
+    background-color: var(--primary-color);
+    padding: 12px 18px;
+    font-size: 1.15rem;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Asegura que las tablas no se corten en pantallas móviles */
+.table-responsive {
+    overflow-x: auto;
+}
+
+/* Estilos de las tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 12px 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+td {
+    padding: 10px;
+    border: 1px solid #E2E8F0;
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+/* Estilos de las cajas de entrada (Inputs) */
+input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #CBD5E1;
+    border-radius: 6px;
+    color: var(--text-color);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(74, 107, 93, 0.1);
+}
+
+input[type="number"] {
+    text-align: right;
+}
+
+/* Celdas de salida de dinero no editables */
+.moneda-out {
+    font-weight: bold;
+    color: var(--text-color);
+    text-align: right;
+    background-color: #F8FAFC;
+}
+
+/* PANEL DERECHO (Resúmenes y Ganancias) */
+.right-panel .card h3 {
+    border-left: 4px solid var(--primary-color);
+    padding-left: 10px;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.row-resumen {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dashed #E2E8F0;
+    font-size: 1rem;
+}
+
+.row-resumen span:last-child {
+    font-weight: 600;
+}
+
+/* Resalte especial para Costo Total Real */
+.highlight {
+    background-color: var(--accent-total);
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 6px;
+    border-bottom: none;
+    margin-top: 5px;
+}
+
+/* Filas con inputs en el panel derecho */
+.row-input {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    align-items: center;
+    margin-bottom: 12px;
+    gap: 10px;
+}
+
+.row-input label {
+    font-size: 0.95rem;
+}
+
+/* Fila de la Suma de Costos */
+.final-row {
+    font-weight: bold;
+    border-top: 2px solid var(--primary-color);
+    padding-top: 12px;
+    margin-top: 15px;
+    border-bottom: none;
+}
+
+/* Gran caja para el Precio de Venta */
+.price-box {
+    display: flex;
+    align-items: center;
+    background: #F8FAFC;
+    border: 2px solid var(--secondary-color);
+    border-radius: 8px;
+    padding: 8px 16px;
+}
+
+.price-box span {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-right: 8px;
+    color: var(--primary-color);
+}
+
+.price-box input {
+    font-size: 1.6rem;
+    font-weight: bold;
+    border: none;
+    background: transparent;
+    padding: 0;
+}
+
+/* Resalte especial para la Ganancia Neta */
+.highlight-net {
+    background-color: var(--accent-net);
+    color: var(--text-net);
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 6px;
+    border-bottom: none;
+    margin: 8px 0;
+}
+
+.highlight-net span {
+    color: var(--text-net);
+}
